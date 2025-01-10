@@ -32,7 +32,7 @@
 "use client";
 
 import React from "react";
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 interface EvolutionStageProps {
   stage: number;

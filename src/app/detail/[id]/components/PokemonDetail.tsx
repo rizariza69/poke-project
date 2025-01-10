@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Image from "next/image";
-import { Chip, Container, Grid2, styled, useTheme } from "@mui/material";
+import { Chip, Container, Grid2 } from "@mui/material";
 import StatCircle from "./statsCircle";
 import EvolutionStage from "./evolutionStep";
-import axios from "axios";
+import { useFetchDetail } from "@/hooks/useFetchData";
 interface PokemonDetail {
   name: string;
   weight: number;
@@ -14,23 +13,28 @@ interface PokemonDetail {
   types: { type: { name: string } }[];
   stats: { base_stat: number; stat: { name: string } }[];
 }
+
+const API = "https://pokeapi.co/api/v2/pokemon";
 export default function PokemonDetail(id: any) {
-  const [loading, setLoading] = React.useState(false);
-  const [pokemonDetail, setPokemonDetail] = useState<PokemonDetail | null>(
-    null
-  );
-  useEffect(() => {
-    if (id) {
-      setLoading(true);
-      axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${id?.id}`)
-        .then((response) => {
-          setPokemonDetail(response?.data);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-    }
-  }, [id?.id]);
+  // const [loading, setLoading] = React.useState(false);
+  // const [pokemonDetail, setPokemonDetail] = useState<PokemonDetail | null>(
+  //   null
+  // );
+  // useEffect(() => {
+  //   if (id) {
+  //     setLoading(true);
+  //     axios
+  //       .get(`https://pokeapi.co/api/v2/pokemon/${id?.id}`)
+  //       .then((response) => {
+  //         setPokemonDetail(response?.data);
+  //         setLoading(false);
+  //       })
+  //       .catch(() => setLoading(false));
+  //   }
+  // }, [id?.id]);
+  const { pokemonDetail, loading } = useFetchDetail({
+    url: `${API}/${id?.id}`,
+  });
 
   // const stats = [
   //   { color: "#2196F3", value: 67, label: "Stat 1" }, // Blue
@@ -246,13 +250,15 @@ export default function PokemonDetail(id: any) {
             }
 
             return (
-              <Grid2 item xs={4} key={index}>
-                <StatCircle
-                  color={typeColor}
-                  value={stat.base_stat}
-                  label={`${stat.stat.name}`}
-                />
-              </Grid2>
+              <>
+                <Grid2 key={index}>
+                  <StatCircle
+                    color={typeColor}
+                    value={stat.base_stat}
+                    label={`${stat.stat.name}`}
+                  />
+                </Grid2>
+              </>
             );
           })}
 

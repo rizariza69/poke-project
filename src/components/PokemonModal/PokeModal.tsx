@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import Image from "next/image";
 import { Chip, Grid2 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import axios from "axios";

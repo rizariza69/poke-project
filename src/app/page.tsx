@@ -21,7 +21,8 @@
 // } from "@mui/material";
 // import Header from "@/components/layout/Header";
 // import PokeModal from "@/components/PokemonModal/PokeModal";
-import ListPokeomon from "@/components/ListPokemon/ListPokemon";
+// import ListPokeomon from "@/components/ListPokemon/ListPokemon";
+import ListPokemon2 from "@/components/ListPokemon/ListPokemon2";
 
 export default function Home() {
   // const [openModal, setOpenModal] = React.useState(false);
@@ -64,5 +65,6 @@ export default function Home() {
   //   logo: "",
   // };
 
-  return <ListPokeomon />;
+  // return <ListPokeomon />;
+  return <ListPokemon2 />;
 }

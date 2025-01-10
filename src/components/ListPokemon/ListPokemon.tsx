@@ -39,7 +39,7 @@ export default function ListPokemon() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [currentPage]);
+  }, [currentPage, offset]);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page);
@@ -50,14 +50,14 @@ export default function ListPokemon() {
 
   const handleCloseModal = () => setOpenModal(false);
 
-  const samplePokemon = {
-    name: "Charizard",
-    weight: 905,
-    height: 17,
-    abilities: ["Blaze", "Solar Power (hidden)"],
-    types: ["Fire", "Flying", "grass"],
-    logo: "",
-  };
+  // const samplePokemon = {
+  //   name: "Charizard",
+  //   weight: 905,
+  //   height: 17,
+  //   abilities: ["Blaze", "Solar Power (hidden)"],
+  //   types: ["Fire", "Flying", "grass"],
+  //   logo: "",
+  // };
   const types = ["Type 1", "Type 2", "Type 3", "Type 4"];
 
   return (
@@ -77,7 +77,7 @@ export default function ListPokemon() {
               }}
             >
               <Typography variant="h3">All The Pokemon</Typography>
-              <Typography variant="h3">data you'll ever</Typography>
+              <Typography variant="h3">{`data you'll ever`}</Typography>
               <Typography variant="h3">need in one place!</Typography>
               <Typography variant="body2" color="text.secondary">
                 need in one place!
@@ -230,7 +230,7 @@ export default function ListPokemon() {
                                 mt: 1,
                               }}
                             >
-                              {types?.map((type: any) => {
+                              {types?.map((type: any, idx: number) => {
                                 let typeColor;
                                 switch (type) {
                                   case "Type 1":
@@ -250,6 +250,7 @@ export default function ListPokemon() {
                                 }
                                 return (
                                   <Chip
+                                    key={idx}
                                     label={type}
                                     style={{ width: "100%" }}
                                     sx={{

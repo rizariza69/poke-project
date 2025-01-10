@@ -31,7 +31,7 @@
 "use client";
 
 import React from "react";
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 // const StyledImage = styled(Box)({
 //   width: "100%",
